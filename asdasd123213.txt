@@ -1,0 +1,36 @@
+def dec_with_args(name):
+    print("Level of acces is",name)
+    if name == "admin":
+        def decorator(func):
+            def wrapper(*args, **kwargs):
+                print("admin")
+                res = func(*args, **kwargs)
+                
+                return res
+            wrapper.__doc__ = func.__doc__
+            return wrapper
+        return decorator 
+    else:
+        def decorator(func):
+            def wrapper(*args, **kwargs):
+                res = func(*args, **kwargs)
+                return res
+            return wrapper
+        return decorator 
+
+def asdlo():
+    print("asdas")
+
+
+@dec_with_args("admin") #user
+def asd():
+    """
+    THIS IS DOCUMENTATION OF FUNC asd
+    """
+    pass
+print(asd.__doc__)
+"""
+Пользователь вводит пароль, если он верный, то ему 
+позоваляется дозаписать в специальный файл, 
+если он не верный. то только прочитать 
+"""
